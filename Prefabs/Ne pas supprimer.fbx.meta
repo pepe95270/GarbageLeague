@@ -1,0 +1,239 @@
+fileFormatVersion: 2
+guid: d92c526d56b60404fa2ee07dc7985450
+timeCreated: 1529098527
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Fahrerkabine
+    100002: Grundplatte
+    100004: Halterung_hinten
+    100006: Halterung_vorne
+    100008: Laterne_01
+    100010: Laterne_02
+    100012: Laterne_03
+    100014: Laterne_04
+    100016: Laterne_05
+    100018: Licht_links
+    100020: Licht_rechts
+    100022: Mast_01
+    100024: Mast_01.001
+    100026: Mast_02
+    100028: Mast_02.001
+    100030: Mast_03
+    100032: Mast_03.001
+    100034: Mast_04
+    100036: Mast_04.001
+    100038: Mast_05
+    100040: R_253_cklicht_links
+    100042: R_253_cklicht_rechts
+    100044: Rad_01
+    100046: Rad_02
+    100048: Rad_03
+    100050: Rad_04
+    100052: Strasse
+    100054: Tank
+    100056: //RootNode
+    400000: Fahrerkabine
+    400002: Grundplatte
+    400004: Halterung_hinten
+    400006: Halterung_vorne
+    400008: Laterne_01
+    400010: Laterne_02
+    400012: Laterne_03
+    400014: Laterne_04
+    400016: Laterne_05
+    400018: Licht_links
+    400020: Licht_rechts
+    400022: Mast_01
+    400024: Mast_01.001
+    400026: Mast_02
+    400028: Mast_02.001
+    400030: Mast_03
+    400032: Mast_03.001
+    400034: Mast_04
+    400036: Mast_04.001
+    400038: Mast_05
+    400040: R_253_cklicht_links
+    400042: R_253_cklicht_rechts
+    400044: Rad_01
+    400046: Rad_02
+    400048: Rad_03
+    400050: Rad_04
+    400052: Strasse
+    400054: Tank
+    400056: //RootNode
+    2100000: Material__25
+    2100002: R_253_cklicht
+    2100004: Material__27
+    2100006: Concrete_Asphalt
+    2100008: wire_088199225
+    2100010: wire_028149177
+    2100012: Material__15
+    2100014: Material__7
+    2100016: wire_088177026
+    2100018: Scheinwerfer
+    2300000: Fahrerkabine
+    2300002: Grundplatte
+    2300004: Halterung_hinten
+    2300006: Halterung_vorne
+    2300008: Laterne_01
+    2300010: Laterne_02
+    2300012: Laterne_03
+    2300014: Laterne_04
+    2300016: Laterne_05
+    2300018: Licht_links
+    2300020: Licht_rechts
+    2300022: Mast_01
+    2300024: Mast_01.001
+    2300026: Mast_02
+    2300028: Mast_02.001
+    2300030: Mast_03
+    2300032: Mast_03.001
+    2300034: Mast_04
+    2300036: Mast_04.001
+    2300038: Mast_05
+    2300040: R_253_cklicht_links
+    2300042: R_253_cklicht_rechts
+    2300044: Rad_01
+    2300046: Rad_02
+    2300048: Rad_03
+    2300050: Rad_04
+    2300052: Strasse
+    2300054: Tank
+    3300000: Fahrerkabine
+    3300002: Grundplatte
+    3300004: Halterung_hinten
+    3300006: Halterung_vorne
+    3300008: Laterne_01
+    3300010: Laterne_02
+    3300012: Laterne_03
+    3300014: Laterne_04
+    3300016: Laterne_05
+    3300018: Licht_links
+    3300020: Licht_rechts
+    3300022: Mast_01
+    3300024: Mast_01.001
+    3300026: Mast_02
+    3300028: Mast_02.001
+    3300030: Mast_03
+    3300032: Mast_03.001
+    3300034: Mast_04
+    3300036: Mast_04.001
+    3300038: Mast_05
+    3300040: R_253_cklicht_links
+    3300042: R_253_cklicht_rechts
+    3300044: Rad_01
+    3300046: Rad_02
+    3300048: Rad_03
+    3300050: Rad_04
+    3300052: Strasse
+    3300054: Tank
+    4300000: Mast_02.001
+    4300002: Mast_01.001
+    4300004: Mast_04.001
+    4300006: Mast_03.001
+    4300008: R_253_cklicht_links
+    4300010: Mast_03
+    4300012: Mast_04
+    4300014: Laterne_03
+    4300016: Strasse
+    4300018: Laterne_01
+    4300020: Halterung_vorne
+    4300022: Mast_05
+    4300024: Mast_01
+    4300026: Halterung_hinten
+    4300028: Grundplatte
+    4300030: Laterne_04
+    4300032: Mast_02
+    4300034: Rad_03
+    4300036: Rad_01
+    4300038: Fahrerkabine
+    4300040: Laterne_02
+    4300042: Tank
+    4300044: Licht_links
+    4300046: R_253_cklicht_rechts
+    4300048: Licht_rechts
+    4300050: Laterne_05
+    4300052: Rad_04
+    4300054: Rad_02
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
