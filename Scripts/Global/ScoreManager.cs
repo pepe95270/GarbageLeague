@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
 			int playerNumber = i + 1;
 			if (playerManager.userControlList[i].GetComponent<Score>().score >= victoryScore)
 			{
+				GameManager.instance.currentGameState = GameManager.GameState.GameOver;
 				victoryAchieved = true;
 				Time.timeScale = 0.05f;
 				DisplayVictory(playerNumber);

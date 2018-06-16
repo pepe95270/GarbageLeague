@@ -10,6 +10,7 @@ public class TrashSpawner : MonoBehaviour
     public GameObject bin;
     public GameObject trashPrefab;
     public GameObject trashContainer;
+    public GameObject zones;
 
 	private float timeUntilNextSpawn;
 
@@ -19,14 +20,22 @@ public class TrashSpawner : MonoBehaviour
 		while (!GetRandomSpawnPosition(out spawnPosition)) { }
 		GameObject newTrash = Instantiate(trashPrefab, trashContainer.transform, true);
 		newTrash.transform.Translate(spawnPosition);
-		TrashType randomType = (TrashType)Random.Range(0, 3);
+		TrashType randomType = (TrashType)Random.Range(0, 4);
 		newTrash.GetComponent<TrashObject>().Initialize(new TrashInfo(randomType));
 	}
 
 	private bool GetRandomSpawnPosition(out Vector3 spawnPosition)
 	{
 		spawnPosition = Vector3.zero;
-		Vector3 v = ground.GetComponent<Collider>().bounds.size;
+        
+        Bounds combinedBounds = new Bounds();
+        var renderers = zones.GetComponentsInChildren<Renderer>();
+        foreach (Renderer render in renderers)
+        {
+            if (render != zones.GetComponent<Renderer>()) combinedBounds.Encapsulate(render.bounds);
+        }
+
+        Vector3 v = combinedBounds.size;
 		float l = v.x;
 		float L = v.z;
 		float lr = Random.Range(1, l - 0.001f);
@@ -62,13 +71,13 @@ public class TrashSpawner : MonoBehaviour
 		}
 	}
 
-    private void Start()
-    {
-        InitializeNextTrash();
-    }
-
     void Update()
 	{
+		if (GameManager.instance.currentGameState != GameManager.GameState.Gameplay)
+		{
+			return;
+		}
+
 		if (timeUntilNextSpawn <= 0f)
 		{
 			InitializeNextTrash();
@@ -77,8 +86,6 @@ public class TrashSpawner : MonoBehaviour
 		else
 		{
 			timeUntilNextSpawn -= Time.deltaTime;
-
-
 		}
 
         if (Input.GetKeyDown("space"))

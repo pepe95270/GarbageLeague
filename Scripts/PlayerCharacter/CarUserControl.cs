@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -10,6 +11,7 @@ namespace UnityStandardAssets.Vehicles.Car
     {
 		[Range(1,4)]
 		public int playerNumber = 1;
+		public List<Renderer> renderers;
         private CarController m_Car; // the car controller we want to use
 		private TurboDash turboDash;
 
