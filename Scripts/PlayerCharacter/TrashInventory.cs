@@ -22,6 +22,11 @@ public class TrashInventory : MonoBehaviour
 		}
 	}
 
+    public void ResetInventory()
+    {
+        trashInfoList.Clear();
+    }
+
 	void Start()
 	{
 		trashInfoList = new List<TrashInfo>();
