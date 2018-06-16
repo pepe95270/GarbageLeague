@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Missile : PowerUp
 {
-	public override void Activate()
+	public GameObject prefabProjectile;
+
+	public Missile(GameObject prefabProjectile)
+	{
+
+	}
+
+	public override void Activate(CarPower caller)
 	{
 		//we instantiate a projectile in front of the car, the projectile goes at constant speed in a direction
 	}

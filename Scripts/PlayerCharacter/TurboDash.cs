@@ -37,7 +37,7 @@ public class TurboDash : MonoBehaviour
 				StopCoroutine(dashCoroutine);
 			}
 			dashCoroutine = StartCoroutine(DashCoroutine());
-			float cooldownTimer = cooldown;
+			cooldownTimer = cooldown;
 		}
 	}
 

@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 				readyTimer = readyTime;
 				while (startingZone.GetNumberOfPlayersInTheZone() == PlayerManager.Instance.GetNumberOfPlayers() && readyTimer > 0f)
 				{
-					Debug.Log("start in: " + readyTimer);
 					readyTimer -= Time.deltaTime;
 					yield return null;
 				}

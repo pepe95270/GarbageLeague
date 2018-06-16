@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+public class PowerUp
 {
-	virtual public void Activate()
+	virtual public void Activate(CarPower caller)
 	{
 
 	}

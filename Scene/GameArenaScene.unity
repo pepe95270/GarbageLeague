@@ -915,6 +915,21 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 4.96
       objectReference: {fileID: 0}
+    - target: {fileID: 114549670452084780, guid: 8e5ab34bfed86654b970e42ba5a720d9,
+        type: 2}
+      propertyPath: maxObjectMinusNumberOfPlayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549670452084780, guid: 8e5ab34bfed86654b970e42ba5a720d9,
+        type: 2}
+      propertyPath: minRateSpawn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549670452084780, guid: 8e5ab34bfed86654b970e42ba5a720d9,
+        type: 2}
+      propertyPath: maxRateSpawn
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e5ab34bfed86654b970e42ba5a720d9, type: 2}
   m_IsPrefabParent: 0

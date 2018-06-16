@@ -20,7 +20,7 @@ public class TrashInventory : MonoBehaviour
 		{
 			trashObject.pickedUpAlready = true;
 			trashInfoList.Add(new TrashInfo(trashObject.trashInfo));
-			Destroy(trashObject.gameObject);
+			trashObject.CustomDestroy();
 		}
 	}
 

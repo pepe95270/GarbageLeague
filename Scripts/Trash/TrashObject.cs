@@ -42,10 +42,16 @@ public class TrashObject : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+		if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !pickedUpAlready)
 		{
 			TrashInventory otherTrashInventory = other.GetComponentInParent<TrashInventory>();
 			otherTrashInventory.AddTrashObject(this);
 		}
 	}
+
+    public void CustomDestroy()
+    {
+        TrashSpawner.trashesInMap.Remove(gameObject);
+        Destroy(gameObject);
+    }
 }

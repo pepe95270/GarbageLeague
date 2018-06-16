@@ -6,19 +6,28 @@ public class TrashSpawner : MonoBehaviour
 {
 	public float minRateSpawn;
 	public float maxRateSpawn;
+    public int maxObjectMinusNumberOfPlayer;
     public GameObject ground;
     public GameObject bin;
     public GameObject trashPrefab;
     public GameObject trashContainer;
     public GameObject zones;
 
+    public static List<GameObject> trashesInMap;
+
 	private float timeUntilNextSpawn;
+
+    public void Start()
+    {
+        trashesInMap = new List<GameObject>();
+    }
 
     private void InitializeNextTrash()
     {
 		Vector3 spawnPosition;
 		while (!GetRandomSpawnPosition(out spawnPosition)) { }
 		GameObject newTrash = Instantiate(trashPrefab, trashContainer.transform, true);
+        trashesInMap.Add(newTrash);
 		newTrash.transform.Translate(spawnPosition);
 		TrashType randomType = (TrashType)Random.Range(0, 4);
 		newTrash.GetComponent<TrashObject>().Initialize(new TrashInfo(randomType));
@@ -35,7 +44,7 @@ public class TrashSpawner : MonoBehaviour
             if (render != zones.GetComponent<Renderer>()) combinedBounds.Encapsulate(render.bounds);
         }
 
-        Vector3 v = combinedBounds.size;
+        Vector3 v = combinedBounds.size * 0.9f;
 		float l = v.x;
 		float L = v.z;
 		float lr = Random.Range(1, l - 0.001f);
@@ -78,7 +87,7 @@ public class TrashSpawner : MonoBehaviour
 			return;
 		}
 
-		if (timeUntilNextSpawn <= 0f)
+		if (timeUntilNextSpawn <= 0f && trashesInMap.Count < maxObjectMinusNumberOfPlayer + PlayerManager.Instance.GetNumberOfPlayers())
 		{
 			InitializeNextTrash();
 			timeUntilNextSpawn = (Random.Range(minRateSpawn, maxRateSpawn) / PlayerManager.Instance.GetNumberOfPlayers());
@@ -87,8 +96,5 @@ public class TrashSpawner : MonoBehaviour
 		{
 			timeUntilNextSpawn -= Time.deltaTime;
 		}
-
-        if (Input.GetKeyDown("space"))
-            InitializeNextTrash();
 	}
 }
