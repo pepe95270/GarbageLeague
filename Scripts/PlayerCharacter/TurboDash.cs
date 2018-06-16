@@ -66,5 +66,9 @@ public class TurboDash : MonoBehaviour
 			timer -= Time.deltaTime;
 			yield return null;
 		}
+
+		Vector3 relativeToOwnAxisVelocityLast = transform.InverseTransformDirection(rigidbody.velocity);
+		relativeToOwnAxisVelocityLast.z = force/2f;
+		rigidbody.velocity = transform.TransformDirection(relativeToOwnAxisVelocityLast);
 	}
 }

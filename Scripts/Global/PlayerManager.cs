@@ -6,12 +6,25 @@ using UnityStandardAssets.Vehicles.Car;
 
 public class PlayerManager : MonoBehaviour
 {
+	public static PlayerManager Instance;
+
 	public int maxPlayerNumber = 4; //this number is dictated by the number of inputs set in the project settings
 	public GameObject playerPrefab;
 	public List<CarUserControl> userControlList;
 
-	
+	private void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+	}
 
+	public int GetNumberOfPlayers()
+	{
+		return userControlList.Count;
+	}
+	
 	private void FixedUpdate()
 	{
 		int iMax = maxPlayerNumber;

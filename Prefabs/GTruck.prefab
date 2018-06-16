@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 114913700658054032}
   - component: {fileID: 114312900975192076}
   - component: {fileID: 114908071533477464}
+  - component: {fileID: 114531846204982002}
   m_Layer: 8
   m_Name: GTruck
   m_TagString: Player
@@ -978,7 +979,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976611574719800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.577026, y: 2.3775628e-15, z: -25.819468}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4502811413981140}
@@ -2550,8 +2551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 45
-  accelerationDuration: 0
-  maxSpeedDuration: 0
+  accelerationDuration: 0.12
+  maxSpeedDuration: 0.48
   cooldown: 3
 --- !u!114 &114502703496237374
 MonoBehaviour:
@@ -2579,6 +2580,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkidTrailPrefab: {fileID: 400000, guid: 4b6aa99de5d21424eab6ae279f31475b, type: 2}
   skidParticles: {fileID: 0}
+--- !u!114 &114531846204982002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976611574719800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9eee275b29249449e72fb4eb5bd7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!114 &114649532217328240
 MonoBehaviour:
   m_ObjectHideFlags: 1

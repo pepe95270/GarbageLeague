@@ -28,6 +28,7 @@ public class ZoneBehavior : MonoBehaviour {
                     Debug.Log("un joueur a déposé un déchet " + otherTrashInventory.trashInfoList[i].trashType);
                     otherTrashInventory.trashInfoList.Remove(otherTrashInventory.trashInfoList[i]);
                     i--;
+					other.GetComponentInParent<Score>().score++;
                 }
             }
         }

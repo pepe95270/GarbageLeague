@@ -12,30 +12,10 @@ public class TrashObject : MonoBehaviour
 		renderer = GetComponent<Renderer>();
 	}
 
-	public void Start()
-	{
-		trashInfo = new TrashInfo(TrashType.Green);
-		renderer.material.color = Color.green;
-	}
-
 	public void Initialize(TrashInfo trashInfo)
 	{
 		this.trashInfo = trashInfo;
-		switch (trashInfo.trashType)
-		{
-			case TrashType.Green:
-				renderer.material.color = Color.green;
-				break;
-			case TrashType.Yellow:
-				renderer.material.color = Color.yellow;
-				break;
-			case TrashType.Blue:
-				renderer.material.color = Color.blue;
-				break;
-			case TrashType.White:
-				renderer.material.color = Color.white;
-				break;
-		}
+        GetComponentInChildren<GlowingAura>().Initialize();
 	}
 
 	void OnTriggerEnter(Collider other)
