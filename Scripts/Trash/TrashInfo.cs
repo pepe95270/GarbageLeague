@@ -18,4 +18,20 @@ public class TrashInfo
 	{
 		this.trashType = trashInfo.trashType;
 	}
+
+	public Color GetColor()
+	{
+		switch (trashType)
+		{
+			case TrashType.Green:
+				return new Color(0, 255, 0, 255);
+			case TrashType.Blue:
+				return new Color(0, 0, 255, 255);
+			case TrashType.Yellow:
+				return new Color(255, 255, 0, 255);
+			case TrashType.White:
+			default:
+				return new Color(255, 255, 255, 255);
+		}
+	}
 }

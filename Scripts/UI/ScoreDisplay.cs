@@ -19,6 +19,10 @@ public class ScoreDisplay : MonoBehaviour
 		{
 			parent.SetActive(true);
 		}
+		if (GameManager.instance.currentGameState == GameManager.GameState.GameOver)
+		{
+			return;
+		}
 		int iMax = PlayerManager.Instance.GetNumberOfPlayers();
 		for (int i = 0; i < iMax; i++)
 		{

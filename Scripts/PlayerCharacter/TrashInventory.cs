@@ -5,6 +5,7 @@ using UnityStandardAssets.Vehicles.Car;
 
 public class TrashInventory : MonoBehaviour
 {
+	public List<Renderer> ringRenderers;
 	public List<TrashInfo> trashInfoList;
 	public int maxTrashObjectCarried = 5;
 
@@ -17,6 +18,7 @@ public class TrashInventory : MonoBehaviour
 	{
 		if (!IsFull())
 		{
+			trashObject.pickedUpAlready = true;
 			trashInfoList.Add(new TrashInfo(trashObject.trashInfo));
 			Destroy(trashObject.gameObject);
 		}
@@ -34,11 +36,20 @@ public class TrashInventory : MonoBehaviour
 
 	void Update()
 	{
+		int iMax = trashInfoList.Count;
+		for (int i = 0; i < iMax; i++)
+		{
+			ringRenderers[i].material.color = trashInfoList[i].GetColor();
+		}
+		for (int i = iMax; i < ringRenderers.Count; i++)
+		{
+			ringRenderers[i].material.color = Color.gray;
+		}
 		if (Debug.isDebugBuild
 			&& this.GetComponent<CarUserControl>().playerNumber == 1
 			&& Input.GetKeyDown(KeyCode.I))
 		{
-			int iMax = trashInfoList.Count;
+			iMax = trashInfoList.Count;
 			string log = "trash count: " + iMax;
 			for (int i = 0; i < iMax; i++)
 			{

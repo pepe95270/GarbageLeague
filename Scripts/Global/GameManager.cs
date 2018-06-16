@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 	public StartingZone startingZone;
 	public float readyTime;
 
-	private float readyTimer;
+	[HideInInspector]
+	public float readyTimer;
 
 	private void Awake()
 	{
@@ -46,6 +47,5 @@ public class GameManager : MonoBehaviour
 		}
 
 		currentGameState = GameState.Gameplay;
-		startingZone.gameObject.SetActive(false);
 	}
 }

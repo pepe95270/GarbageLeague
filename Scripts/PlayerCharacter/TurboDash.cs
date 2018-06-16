@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Vehicles.Car;
 
 [RequireComponent(typeof(Rigidbody))]
 public class TurboDash : MonoBehaviour
@@ -42,13 +43,16 @@ public class TurboDash : MonoBehaviour
 
 	private IEnumerator DashCoroutine()
 	{
+		GetComponent<CarController>().MaxSpeed = GetComponent<CarController>().MaxSpeed + 40f;
+
 		float timer = accelerationDuration;
 		float initialVelocity = transform.InverseTransformDirection(rigidbody.velocity).z;
+		float maxSpeed = Mathf.Max(force, initialVelocity + 40);
 
 		while (timer > 0f)
 		{
 			Vector3 relativeToOwnAxisVelocity = transform.InverseTransformDirection(rigidbody.velocity);
-			relativeToOwnAxisVelocity.z = Mathf.Lerp(force, initialVelocity, timer / accelerationDuration);
+			relativeToOwnAxisVelocity.z = Mathf.Lerp(maxSpeed, initialVelocity, timer / accelerationDuration);
 			rigidbody.velocity = transform.TransformDirection(relativeToOwnAxisVelocity);
 			
 			timer -= Time.deltaTime;
@@ -60,7 +64,7 @@ public class TurboDash : MonoBehaviour
 		while (timer > 0f)
 		{
 			Vector3 relativeToOwnAxisVelocity = transform.InverseTransformDirection(rigidbody.velocity);
-			relativeToOwnAxisVelocity.z = force;
+			relativeToOwnAxisVelocity.z = maxSpeed;
 			rigidbody.velocity = transform.TransformDirection(relativeToOwnAxisVelocity);
 
 			timer -= Time.deltaTime;
@@ -68,7 +72,9 @@ public class TurboDash : MonoBehaviour
 		}
 
 		Vector3 relativeToOwnAxisVelocityLast = transform.InverseTransformDirection(rigidbody.velocity);
-		relativeToOwnAxisVelocityLast.z = force/2f;
+		relativeToOwnAxisVelocityLast.z = (maxSpeed + initialVelocity) /2f;
 		rigidbody.velocity = transform.TransformDirection(relativeToOwnAxisVelocityLast);
+		
+		GetComponent<CarController>().MaxSpeed = GetComponent<CarController>().MaxSpeed - 40f;
 	}
 }
