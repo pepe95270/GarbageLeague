@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+	//here, victory means that a unicorn will be instantiated, the game will end when the unicorn is brought back to a deposit zone
 	public int victoryScore;
 	private PlayerManager playerManager;
 
@@ -23,18 +24,18 @@ public class ScoreManager : MonoBehaviour
 			int playerNumber = i + 1;
 			if (playerManager.userControlList[i].GetComponent<Score>().score >= victoryScore)
 			{
-				GameManager.instance.currentGameState = GameManager.GameState.GameOver;
+				//GameManager.instance.currentGameState = GameManager.GameState.GameOver;
+				GameManager.instance.unicornReady = true;
 				victoryAchieved = true;
-				Time.timeScale = 0.05f;
-				DisplayVictory(playerNumber);
 				return;
 			}
 		}
 	}
 	
 	//for now we only destroy the other players
-	private void DisplayVictory(int winnerPlayerNumber)
+	public void DisplayVictory(int winnerPlayerNumber)
 	{
+		Time.timeScale = 0.1f;
 		int iMax = playerManager.userControlList.Count;
 		for (int i = 0; i < iMax; i++)
 		{

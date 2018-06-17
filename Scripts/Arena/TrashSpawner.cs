@@ -10,8 +10,10 @@ public class TrashSpawner : MonoBehaviour
     public GameObject ground;
     public GameObject bin;
     public GameObject trashPrefab;
+	public GameObject unicornPrefab;
     public GameObject trashContainer;
     public GameObject zones;
+	public StartingZone startingZone;
 
     public static List<GameObject> trashesInMap;
 
@@ -25,12 +27,25 @@ public class TrashSpawner : MonoBehaviour
     private void InitializeNextTrash()
     {
 		Vector3 spawnPosition;
-		while (!GetRandomSpawnPosition(out spawnPosition)) { }
+		while (!GetRandomSpawnPosition(out spawnPosition)) { } //will find a valid random spawn Position
 		GameObject newTrash = Instantiate(trashPrefab, trashContainer.transform, true);
         trashesInMap.Add(newTrash);
 		newTrash.transform.Translate(spawnPosition);
 		TrashType randomType = (TrashType)Random.Range(0, 4);
 		newTrash.GetComponent<TrashObject>().Initialize(new TrashInfo(randomType));
+	}
+
+	private void SpawnUnicorn()
+	{
+		Vector3 spawnPosition;
+		while (!GetRandomSpawnPosition(out spawnPosition)) { } //will find a valid random spawn Position
+		GameObject newTrash = Instantiate(unicornPrefab, trashContainer.transform, true);
+		newTrash.transform.Translate(spawnPosition);
+		newTrash.GetComponent<TrashObject>().Initialize(new TrashInfo(TrashType.Unicorn));
+
+		startingZone.GetComponent<Renderer>().material.SetFloat("_MKGlowPower", 1f);
+		startingZone.GetComponent<Renderer>().material.SetColor("_MKGlowTexColor", new Color(1f, 1f, 0));
+		startingZone.GetComponent<Renderer>().material.SetFloat("_MKGlowTexStrength", 1f);
 	}
 
 	private bool GetRandomSpawnPosition(out Vector3 spawnPosition)
@@ -87,10 +102,19 @@ public class TrashSpawner : MonoBehaviour
 			return;
 		}
 
-		if (timeUntilNextSpawn <= 0f && trashesInMap.Count < maxObjectMinusNumberOfPlayer + PlayerManager.Instance.GetNumberOfPlayers())
+		if (timeUntilNextSpawn <= 0f)
 		{
-			InitializeNextTrash();
-			timeUntilNextSpawn = (Random.Range(minRateSpawn, maxRateSpawn) / PlayerManager.Instance.GetNumberOfPlayers());
+			if (GameManager.instance.unicornReady)
+			{
+				SpawnUnicorn();
+				timeUntilNextSpawn = (Random.Range(minRateSpawn, maxRateSpawn) / PlayerManager.Instance.GetNumberOfPlayers());
+				GameManager.instance.unicornReady = false;
+			}
+			else if(trashesInMap.Count < maxObjectMinusNumberOfPlayer + PlayerManager.Instance.GetNumberOfPlayers())
+			{
+				InitializeNextTrash();
+				timeUntilNextSpawn = (Random.Range(minRateSpawn, maxRateSpawn) / PlayerManager.Instance.GetNumberOfPlayers());
+			}
 		}
 		else
 		{

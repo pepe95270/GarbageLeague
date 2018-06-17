@@ -145,6 +145,7 @@ MonoBehaviour:
   - {fileID: 1230533413843818, guid: b374849551ec5424580e6a68c41d52f0, type: 2}
   prefabPlasticTrashList:
   - {fileID: 1572240291819740, guid: 031b8e35dd02b6f44a907155cbfa0f30, type: 2}
+  pickedUpAlready: 0
 --- !u!136 &136413114639172952
 CapsuleCollider:
   m_ObjectHideFlags: 1

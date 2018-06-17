@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Missile : PowerUp
 {
-	public GameObject prefabProjectile;
 
-	public Missile(GameObject prefabProjectile)
+	public override void Activate(PowerInventory caller)
 	{
+        //we instantiate a projectile in front of the car, the projectile goes at constant speed in a direction
+        GameObject missile = GameObject.Instantiate(PrefabManager.Instance.prefabMissile);
+        missile.GetComponent<MissileBehavior>().sender = caller.gameObject;
+        missile.GetComponent<MissileBehavior>().Launch();
 
-	}
-
-	public override void Activate(CarPower caller)
-	{
-		//we instantiate a projectile in front of the car, the projectile goes at constant speed in a direction
-	}
+    }
 }

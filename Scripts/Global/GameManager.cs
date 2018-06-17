@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
 	public StartingZone startingZone;
 	public float readyTime;
+	public bool unicornReady = false;
 
 	[HideInInspector]
 	public float readyTimer;
@@ -26,6 +28,15 @@ public class GameManager : MonoBehaviour
 	{
 		currentGameState = GameState.PlayerActivation;
 		StartCoroutine(WaitForPlayersToBeReadyAndLaunchGame());
+	}
+
+	private void Update()
+	{
+		if (Debug.isDebugBuild
+			&& Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftAlt))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 
 	private IEnumerator WaitForPlayersToBeReadyAndLaunchGame()

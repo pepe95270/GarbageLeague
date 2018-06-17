@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		public List<Renderer> renderers;
         private CarController m_Car; // the car controller we want to use
 		private TurboDash turboDash;
-		private CarPower carPower;
+		private PowerInventory carPower;
 
 
         private void Awake()
@@ -22,7 +22,7 @@ namespace UnityStandardAssets.Vehicles.Car
             // get the car controller
             m_Car = GetComponent<CarController>();
 			turboDash = GetComponent<TurboDash>();
-			carPower = GetComponent<CarPower>();
+			carPower = GetComponent<PowerInventory>();
         }
 
 

@@ -11,12 +11,7 @@ public class TrashObject : MonoBehaviour
     public List<GameObject> prefabPlasticTrashList;
 	[HideInInspector]
 	public bool pickedUpAlready = false;
-	private new Renderer renderer;
-
-	private void Awake()
-	{
-		renderer = GetComponent<Renderer>();
-	}
+    
 
 	public void Initialize(TrashInfo trashInfo)
 	{

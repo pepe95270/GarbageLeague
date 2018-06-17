@@ -518,6 +518,9 @@ GameObject:
   - component: {fileID: 114450238645712836}
   - component: {fileID: 114387811587411562}
   - component: {fileID: 114118817484212962}
+  - component: {fileID: 114904054664089562}
+  - component: {fileID: 114696964995126924}
+  - component: {fileID: 114862800671086666}
   m_Layer: 8
   m_Name: GTruck
   m_TagString: Player
@@ -1005,7 +1008,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1793525827975178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12.9}
+  m_LocalPosition: {x: 0, y: 0, z: -22.8}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_Children:
   - {fileID: 4018657462750774}
@@ -1088,13 +1091,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094290008647714}
-  m_LocalRotation: {x: 0.17310196, y: 0, z: 0, w: 0.98490393}
-  m_LocalPosition: {x: 0, y: 0.8130856, z: 0.87187195}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.99, z: 1.775}
   m_LocalScale: {x: 1, y: 0.46999997, z: 1.9199998}
   m_Children: []
   m_Father: {fileID: 4018657462750774}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4850033276045296
 Transform:
   m_ObjectHideFlags: 1
@@ -2187,7 +2190,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1793525827975178}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 200
   m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2213,7 +2216,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578290307294612}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2885,15 +2888,35 @@ MonoBehaviour:
   m_MaximumSteerAngle: 25
   m_SteerHelper: 1
   m_TractionControl: 1
-  m_FullTorqueOverAllWheels: 5000
-  m_ReverseTorque: 2000
+  m_FullTorqueOverAllWheels: 1000
+  m_ReverseTorque: 300
   m_MaxHandbrakeTorque: 1e+38
-  m_Downforce: 1000
+  m_Downforce: 200
   m_SpeedType: 0
   m_Topspeed: 80
+  m_TopReverseSpeed: 200
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.3
-  m_BrakeTorque: 20000
+  m_BrakeTorque: 2e+10
+--- !u!114 &114696964995126924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793525827975178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990f94cd1afa26e44ba1e88efee1323e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropRate: 3
+  physicsBallSimulationPrefab: {fileID: 1497308454504630, guid: cd03270f4961ecf42869d5d8b6ccb88b,
+    type: 2}
+  trashPrefab: {fileID: 1291093617649500, guid: 1d03a903a4b962e46aa3d7a388afb766,
+    type: 2}
+  unicornPrefab: {fileID: 1150150924778956, guid: 7aaf9152d7e602f4889e220edcaaccdf,
+    type: 2}
+  trashContainer: {fileID: 0}
 --- !u!114 &114719491899444270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2907,6 +2930,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkidTrailPrefab: {fileID: 400000, guid: 4b6aa99de5d21424eab6ae279f31475b, type: 2}
   skidParticles: {fileID: 0}
+--- !u!114 &114862800671086666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793525827975178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60162ce5f39b5f4aa05730e4deb0026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerCountInInventory: 0
+--- !u!114 &114904054664089562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793525827975178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e1a22a7312dea4593f46c387070313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114985722384368406
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,14 +5,22 @@ using UnityEngine;
 public class PowerUpObject : MonoBehaviour
 {
 	public PowerUp powerUp;
-	private bool hasBeenPickedUp = false;
+    [HideInInspector]
+    public int id;
+    private bool hasBeenPickedUp = false;
 
-	void OnTriggerEnter(Collider other)
+    public void Initialize(PowerUp powerUp)
+    {
+        this.powerUp = powerUp;
+        Instantiate(PrefabManager.Instance.prefabMissileDesign, transform);
+    }
+
+    void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !hasBeenPickedUp)
 		{
-			CarPower otherCarPower = other.GetComponentInParent<CarPower>();
-			hasBeenPickedUp = otherCarPower.TryEquipPowerUp(this);
+			PowerInventory otherPowerInventory = other.GetComponentInParent<PowerInventory>();
+			hasBeenPickedUp = otherPowerInventory.TryEquipPowerUp(this);
 		}
 	}
 }

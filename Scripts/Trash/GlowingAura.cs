@@ -18,6 +18,7 @@ public class GlowingAura : MonoBehaviour {
 
     public void Initialize()
     {
+		//didn't use trashinfo.GetColor because of shader properties that needs 255 notation colors
         if (trashObject.trashInfo.trashType == TrashType.Green)
         {
             GetComponent<Renderer>().material.SetColor("_MKGlowColor", new Color(0, 255, 0, 255));
@@ -29,8 +30,12 @@ public class GlowingAura : MonoBehaviour {
         else if (trashObject.trashInfo.trashType == TrashType.Yellow)
         {
             GetComponent<Renderer>().material.SetColor("_MKGlowColor", new Color(255, 255, 0, 255));
-        }
-        else if (trashObject.trashInfo.trashType == TrashType.White)
+		}
+		else if (trashObject.trashInfo.trashType == TrashType.Unicorn)
+		{
+			GetComponent<Renderer>().material.SetColor("_MKGlowColor", new Color(1f, 0.1f, 1f, 1f));
+		}
+		else if (trashObject.trashInfo.trashType == TrashType.White)
         {
             GetComponent<Renderer>().material.SetColor("_MKGlowColor", new Color(255, 255, 255, 255));
         }

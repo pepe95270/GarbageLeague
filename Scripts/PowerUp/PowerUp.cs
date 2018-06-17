@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUp
 {
-	virtual public void Activate(CarPower caller)
+	virtual public void Activate(PowerInventory caller)
 	{
 
 	}

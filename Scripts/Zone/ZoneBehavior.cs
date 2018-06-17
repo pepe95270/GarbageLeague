@@ -6,16 +6,6 @@ public class ZoneBehavior : MonoBehaviour {
 
     public TrashType trashType;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))

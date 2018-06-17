@@ -32,7 +32,8 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_Downforce = 100f;
         [SerializeField] private SpeedType m_SpeedType;
         [SerializeField] private float m_Topspeed = 200;
-        [SerializeField] private static int NoOfGears = 5;
+        [SerializeField] private float m_TopReverseSpeed = 200;
+        [SerializeField] private static int NoOfGears = 1;
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
@@ -46,6 +47,8 @@ namespace UnityStandardAssets.Vehicles.Car
         private float m_CurrentTorque;
         private Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
+        private bool isReactingToMissile = false;
+        private float m_OldSteerHelper;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
@@ -71,6 +74,34 @@ namespace UnityStandardAssets.Vehicles.Car
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
         }
 
+        void Update()
+        {
+            if (isReactingToMissile)
+            {
+                m_SteerAngle = m_MaximumSteerAngle;
+                m_WheelColliders[0].steerAngle = m_SteerAngle;
+                m_WheelColliders[1].steerAngle = m_SteerAngle;
+            }
+        }
+
+        public void ReactToMissileExplosion()
+        {
+            if (!isReactingToMissile)
+            {
+                isReactingToMissile = true;
+                m_OldSteerHelper = m_SteerHelper;
+                Invoke("StopReactingToMissileExplosion", 3);
+                m_CentreOfMassOffset = new Vector3(0, 0, 1);
+                m_SteerHelper = 0;
+            }
+        }
+
+        public void StopReactingToMissileExplosion()
+        {
+            m_CentreOfMassOffset = new Vector3(0, 0, 0);
+            isReactingToMissile = false;
+            m_SteerHelper = m_OldSteerHelper;
+        }
 
         private void GearChanging()
         {
@@ -128,6 +159,10 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void Move(float steering, float accel, float footbrake, float handbrake)
         {
+            if(isReactingToMissile)
+            {
+                steering = 1;
+            }
             for (int i = 0; i < 4; i++)
             {
                 Quaternion quat;
@@ -175,21 +210,43 @@ namespace UnityStandardAssets.Vehicles.Car
         private void CapSpeed()
         {
             float speed = m_Rigidbody.velocity.magnitude;
-            switch (m_SpeedType)
-            {
-                case SpeedType.MPH:
 
-                    speed *= 2.23693629f;
-                    if (speed > m_Topspeed)
-                        m_Rigidbody.velocity = (m_Topspeed/2.23693629f) * m_Rigidbody.velocity.normalized;
-                    break;
+			if (speed > 5 && Vector3.Angle(transform.forward, m_Rigidbody.velocity) < 50f)
+			{
+				switch (m_SpeedType)
+				{
+					case SpeedType.MPH:
 
-                case SpeedType.KPH:
-                    speed *= 3.6f;
-                    if (speed > m_Topspeed)
-                        m_Rigidbody.velocity = (m_Topspeed/3.6f) * m_Rigidbody.velocity.normalized;
-                    break;
-            }
+						speed *= 2.23693629f;
+						if (speed > m_Topspeed)
+							m_Rigidbody.velocity = (m_Topspeed / 2.23693629f) * m_Rigidbody.velocity.normalized;
+						break;
+
+					case SpeedType.KPH:
+						speed *= 3.6f;
+						if (speed > m_Topspeed)
+							m_Rigidbody.velocity = (m_Topspeed / 3.6f) * m_Rigidbody.velocity.normalized;
+						break;
+				}
+			}
+			else
+			{
+				switch (m_SpeedType)
+				{
+					case SpeedType.MPH:
+
+						speed *= 2.23693629f;
+						if (speed > m_TopReverseSpeed)
+							m_Rigidbody.velocity = (m_TopReverseSpeed / 2.23693629f) * m_Rigidbody.velocity.normalized;
+						break;
+
+					case SpeedType.KPH:
+						speed *= 3.6f;
+						if (speed > m_TopReverseSpeed)
+							m_Rigidbody.velocity = (m_TopReverseSpeed / 3.6f) * m_Rigidbody.velocity.normalized;
+						break;
+				}
+			}
         }
 
 

@@ -8,6 +8,8 @@ public class TrashInventory : MonoBehaviour
 	public List<Renderer> ringRenderers;
 	public List<TrashInfo> trashInfoList;
 	public int maxTrashObjectCarried = 5;
+    
+    private bool isStun;
 
 	public bool IsFull()
 	{
@@ -16,13 +18,24 @@ public class TrashInventory : MonoBehaviour
 	
 	public void AddTrashObject(TrashObject trashObject)
 	{
-		if (!IsFull())
+		if (!IsFull() && !isStun)
 		{
 			trashObject.pickedUpAlready = true;
 			trashInfoList.Add(new TrashInfo(trashObject.trashInfo));
 			trashObject.CustomDestroy();
 		}
 	}
+
+    public void Stun()
+    {
+        isStun = true;
+        Invoke("unStun",3f);
+    }
+
+    private void unStun()
+    {
+        isStun = false;
+    }
 
     public void ResetInventory()
     {
@@ -32,6 +45,7 @@ public class TrashInventory : MonoBehaviour
 	void Start()
 	{
 		trashInfoList = new List<TrashInfo>();
+        isStun = false;
 	}
 
 	void Update()
