@@ -86,8 +86,38 @@ public class StartingZone : MonoBehaviour
 
 		if (timer <= 0f)
 		{
+			PlayerManager.Instance.userControlList[playerWinning - 1].GetComponent<Score>().score += PlayerManager.Instance.GetNumberOfPlayers();
+			List<int> maxScorePlayers = new List<int> { 1 };
+			int maxScore = PlayerManager.Instance.userControlList[0].GetComponent<Score>().score;
+			for (int i = 1; i < PlayerManager.Instance.GetNumberOfPlayers(); i++)
+			{
+				int currentScore = PlayerManager.Instance.userControlList[i].GetComponent<Score>().score;
+				if (currentScore > maxScore)
+				{
+					maxScore = currentScore;
+					maxScorePlayers.Clear();
+				}
+				if (currentScore >= maxScore)
+				{
+					maxScorePlayers.Add(i + 1);
+				}
+			}
 			Time.timeScale = 0.1f;
-			countdown.countdownUI.text = "Player " + playerWinning + " won!";
+			if (maxScorePlayers.Count == 1)
+			{
+				countdown.countdownUI.text = "Player " + maxScorePlayers[0] + " won!";
+			}
+			else
+			{
+				string result = "It's a tie between players ";
+				result += maxScorePlayers[0];
+				for (int i = 1; i < maxScorePlayers.Count - 1; i++)
+				{
+					result += ", " + maxScorePlayers[i];
+				}
+				result += " and " + maxScorePlayers[maxScorePlayers.Count - 1];
+				countdown.countdownUI.text = result;
+			}
 		}
 	}
 }

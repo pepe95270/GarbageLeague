@@ -35,6 +35,8 @@ public class CarCollision : MonoBehaviour {
 			}
             newTrash.transform.Translate(target.transform.position + 8*Vector3.up);
             newTrash.transform.parent = simulation.transform;
+            newTrash.GetComponent<TrashObject>().ActiveWait();
+            newTrash.GetComponent<TrashObject>().Invoke("DesactiveWait", 3f);
             simulation.GetComponent<SimPhysicsThenDie>().child = newTrash;
             newTrash.GetComponent<TrashObject>().Initialize(new TrashInfo(itemTrash));
         }

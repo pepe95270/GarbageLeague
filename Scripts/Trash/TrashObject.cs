@@ -9,9 +9,20 @@ public class TrashObject : MonoBehaviour
     public List<GameObject> prefabGlassTrashList;
     public List<GameObject> prefabPaperTrashList;
     public List<GameObject> prefabPlasticTrashList;
+    [HideInInspector]public bool waitBeforeActive = false;
 	[HideInInspector]
 	public bool pickedUpAlready = false;
     
+
+    public void ActiveWait()
+    {
+        waitBeforeActive = true;
+    }
+
+    public void DesactiveWait()
+    {
+        waitBeforeActive = false;
+    }
 
 	public void Initialize(TrashInfo trashInfo)
 	{
@@ -37,11 +48,14 @@ public class TrashObject : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !pickedUpAlready)
-		{
-			TrashInventory otherTrashInventory = other.GetComponentInParent<TrashInventory>();
-			otherTrashInventory.AddTrashObject(this);
-		}
+        if (!waitBeforeActive)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !pickedUpAlready)
+            {
+                TrashInventory otherTrashInventory = other.GetComponentInParent<TrashInventory>();
+                otherTrashInventory.AddTrashObject(this);
+            }
+        }
 	}
 
     public void CustomDestroy()

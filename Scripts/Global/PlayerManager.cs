@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
 	public GameObject playerPrefab;
 	public List<Color> playerColors;
 	public List<CarUserControl> userControlList;
+    public List<Vector3> playerSpawnWorldPositionList;
 
 	private void Awake()
 	{
@@ -40,7 +41,7 @@ public class PlayerManager : MonoBehaviour
 			int playerNumber = i + 1;
 			if (userControlList.FindIndex(x => x.playerNumber == playerNumber) == -1 && CrossPlatformInputManager.GetAxis("TurboDashP" + playerNumber) > 0.5f)
 			{
-				GameObject instantiated = Instantiate(playerPrefab);
+				GameObject instantiated = Instantiate(playerPrefab, playerSpawnWorldPositionList[i], Quaternion.identity);
 				CarUserControl carUserControl = instantiated.GetComponent<CarUserControl>();
 				carUserControl.playerNumber = playerNumber;
 				foreach(Renderer renderer in carUserControl.renderers)
